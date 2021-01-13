@@ -6,7 +6,7 @@
 # Digital-Signal-Processing
 Digital Signal Processing algorithms implemented using MATLAB(or Python) for UOM's EN2570 - Digital Signal Processing Module ❄
 
-# *Creating a virtual environment for Computer Vision*
+# *Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing*
 
 First install a Python version compatible with your requirements. Here I have installed Python 3.8 since it was the latest supported version for tensorflow by the time I was creating the environment. Remember to set the installation directory of python as the `C:\Python38`.
 
