@@ -22,7 +22,7 @@ First install a Python version compatible with your requirements. Here I have in
 
 6. Change the directory to: `C:\Python38\ai\Scripts`
 
-7.Activate the ai environment: `activate ai`
+7. Activate the ai environment: `activate ai`
 
 8. Then install the required packages
 
