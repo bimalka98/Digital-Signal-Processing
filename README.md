@@ -12,7 +12,7 @@ First install a Python version compatible with your requirements. Here I have in
 
 1. Open command Prompt and follow the steps.
 
-2. Change the Directory to: `cd C:\Python38`
+2. Change the Directory to: `C:\Python38`
 
 3. Upgrade pip: `python -m pip install --upgrade pip`
 
