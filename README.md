@@ -20,9 +20,11 @@ First install a Python version compatible with your requirements. Here I have in
 
 5. Create virtual environment: `virtualenv ai` (ai is the name of the virtual environment ai=artificial intelligence.)
 
-6. Activate the ai environment: `cd C:\Python38\ai\Scripts>activate ai`
+6. Change the directory to: `C:\Python38\ai\Scripts`
 
-7. Then install the required packages
+7.Activate the ai environment: `activate ai`
+
+8. Then install the required packages
 
 ```shell
 pip install tensorflow-gpu
