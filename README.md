@@ -42,3 +42,6 @@ Environment created above can be activated in any folder through `GIT Bash` usin
 $ source /c/Python38/ai/Scripts/activate
 $ jupyter lab
 ```
+# *References*
+1. Discrete-Time Signal Processing by *Alan V. Oppenheim, Ronald W. Schafer*
+2. Digital Signal Processing by *Antoniou*
