@@ -6,6 +6,15 @@
 # Digital-Signal-Processing
 Digital Signal Processing algorithms implemented using MATLAB(or Python) for UOM's EN2570 - Digital Signal Processing Module ❄
 
+<h2 align="center"> Contents❄ </h2>
+
+1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
+2. [References](#references)
+
+
+---
+
+
 # *Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing*
 
 First install a Python version compatible with your requirements. Here I have installed Python 3.8 since it was the latest supported version for tensorflow by the time I was creating the environment. Remember to set the installation directory of python as the `C:\Python38`.
@@ -45,3 +54,4 @@ $ jupyter lab
 # *References*
 1. Discrete-Time Signal Processing by *Alan V. Oppenheim, Ronald W. Schafer*
 2. Digital Signal Processing by *Antoniou*
+3. Iman (2021). Dig_Filter (https://www.mathworks.com/matlabcentral/fileexchange/30321-dig_filter), MATLAB Central File Exchange. Retrieved February 5, 2021.
