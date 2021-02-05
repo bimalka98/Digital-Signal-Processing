@@ -3,9 +3,6 @@
 <img width="100px" src="https://github.com/bimalka98/bimalka98/blob/master/Logos/b98-logo.png" align="center"/>
 </a>
 
-# Digital-Signal-Processing
-Digital Signal Processing algorithms implemented using MATLAB(or Python) for UOM's EN2570 - Digital Signal Processing Module ❄
-
 <h2 align="center"> Contents❄ </h2>
 
 1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
