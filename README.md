@@ -6,7 +6,8 @@
 <h2 align="center"> Contents❄ </h2>
 
 1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
-2. [References](#references)
+2. [Applications and Basics](#applications-and-basics)
+3. [References](#references)
 
 
 ---
@@ -48,6 +49,12 @@ Environment created above can be activated in any folder through `GIT Bash` usin
 $ source /c/Python38/ai/Scripts/activate
 $ jupyter lab
 ```
+
+# *Applications and Basics*
+
+* [Basic functions](http://htmlpreview.github.io/?https://github.com/bimalka98/Digital-Signal-Processing/blob/main/PractiseDSP/Basicfunctions.html)
+
+
 # *References*
 1. Discrete-Time Signal Processing by *Alan V. Oppenheim, Ronald W. Schafer*
 2. Digital Signal Processing by *Antoniou*
