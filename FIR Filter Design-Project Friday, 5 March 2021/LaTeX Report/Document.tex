@@ -1,0 +1,133 @@
+%  -----------------------------------------------------------------------------
+%  Author         : Bimalka Piyaruwan Thalagala
+%  GitHub         : https://github.com/bimalka98
+%  Date Created   : 01.09.2020
+%  Last Modified  : 15.02.2020
+%  -----------------------------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/macros}
+\usepackage[ framed, numbered]{matlab-prettifier}%framed,%
+\usepackage{listings}
+\usepackage{physics} 
+\begin{document}
+\input{content/title_page}
+
+\begin{abstract}
+	Design procedure of a Finite Duration Impulse Response(FIR) bandpass Digital Filter which satisfies a set of prescribed specifications, is described in this report where windowing method in conjunction with the Kaiser window is used for the designing procedure. Operation of the filter was analyzed with a combination of sine functions. The design was implemented and tested using {\tt MATLAB R2018a} of the MathWorks Inc. Therefore implementation is not guaranteed to work on the previous version of the software.	
+\end{abstract}
+
+\pagebreak
+\tableofcontents
+
+\begin{center}
+	\textbf{\textit{* PDF is clickable}}
+\end{center}
+
+
+
+\textit{Note:}\\
+\textit{Additionally all the materials related to Task can also be found at \url{}}
+\pagebreak
+
+\section{Introduction}
+
+This report describes the design procedure of an FIR bandpass digital filter.
+
+\section{Method}
+
+\subsection{Filter Implementation}
+Filter implementation consists of the steps mentioned below. Subsections of this section of the report describes each one of them for designing an FIR bandpass filter.
+
+\begin{enumerate}[\hspace{1cm}1.]
+	\item Identifying the prescribed filter specifications
+	\item Derivation of the filter Parameters
+	\item Derivation of the Kaiser Window Parameters
+\end{enumerate}
+\pagebreak
+\subsubsection{Prescribed Filter specifications}
+Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report.\\
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{l c r}
+		\textbf{Parameter}& \textbf{Symbol}&\textbf{Value}\\\hline
+		&&\\
+Maximum passband ripple&$\tilde{A_p}$&0.09 dB\\
+Minimum stopband attenuation&$\tilde{A_a}$&48 dB\\
+Lower passband edge&$\omega_{p1}$&400 rad/s\\
+Upper passband edge&$\omega_{p2}$&800 rad/s\\
+Lower stopband edge&$\omega_{a1}$&250 rad/s\\
+Upper stopband edge&$\omega_{a2}$&900 rad/s\\
+Sampling frequency&$\omega_s$&2600 rad/s\\
+\hline\hline
+	\end{tabular}
+\caption{Prescribed Filter specifications}
+\end{table}
+
+Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple $A_p$ and the minimum stopband attenuation $A_a$.\\
+
+\begin{equation}
+	\tilde{A_p} \ge A_p = 20\log(\frac{1+\delta}{1-\delta})
+\end{equation}
+\begin{equation}
+ \tilde{A_a} \le A_a = -20\log(\delta)
+\end{equation}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/filtersepecs}
+	\caption{Idealized frequency response of a Bandpass filter\cite{antonio}}
+\end{figure}
+\pagebreak
+\subsubsection{Derivation of filter Parameters}
+
+According to the given specifications following parameters are calculated.
+
+\begin{table}[!h]
+	\centering
+\begin{tabular}{l c c r}
+\textbf{Parameter}& \textbf{Symbol}& \textbf{Calculation}&\textbf{Value}\\\hline
+&&&\\
+Lower transition width& $B_{t1}$& $\omega_{p1} - \omega_{a1}$&150 rad/s\\
+Upper transition width& $B_{t2}$&$\omega_{a2}-\omega_{p2}$&100 rad/s\\
+Critical transition width& $B_t$&$\min(B_{t1},B_{t2})$&100 rad/s\\
+Lower cutoff frequency& $\omega_{c1}$&$\omega_{p1}-B_t/2$&350 rad/s\\
+Upper cutoff frequency& $\omega_{c2}$&$\omega_{p2}+B_t/2 $&850 rad/s \\
+Sampling period& $T$& $2\pi / \omega_s$&$0.0024$ s\\
+\hline\hline
+\end{tabular}
+\caption{Derivation of filter Parameters}
+\end{table}
+
+\subsubsection{Derivation of the Kaiser Window Parameters}
+Following equation represents the Kaiser window which will be used to truncate the Infinite duration Impulse Response to obtain the Finite duration Impulse Response for our filter design.
+
+\begin{equation}
+w_K(nT) = \begin{cases}
+	\frac{I_0(\beta)}{I_0(\alpha)} & for \abs{n}  \leq \frac{N-1}{2} \\
+	0 & Otherwise
+\end{cases}	
+\end{equation}
+
+
+where $\alpha$ is an independent parameter and $I_0(x)$ is the zeroth-order modified Bessel function of the first kind.\\
+%372
+\[ 
+\beta = \alpha\sqrt{1-\left(\frac{2n}{N-1}\right)^2} \hspace*{1cm} I_0(x) = 1+\sum_{k=1}^{\infty}\left[\frac{1}{k!}\left(\frac{x}{2}\right)^k\right]^2
+ \]
+
+\section{Results}
+\section{Discussion}
+\section{Conclusion}
+%\lstinputlisting[basicstyle = \mlttfamily\scriptsize , style = Matlab-editor]{code/RFPL.m}
+
+
+\pagebreak
+\bibliographystyle{plain}
+\bibliography{refer}
+
+%---------------------------------------------------------------------------
+\end{document}
