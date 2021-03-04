@@ -55,8 +55,8 @@ Following table describes the desired specifications of the bandpass filter whic
 	\begin{tabular}{l c r}
 		\textbf{Parameter}& \textbf{Symbol}&\textbf{Value}\\\hline
 		&&\\
-Maximum passband ripple&$\tilde{A_p}$&0.09 dB\\
-Minimum stopband attenuation&$\tilde{A_a}$&48 dB\\
+Maximum passband ripple(\textit{desired})&$\tilde{A_p}$&0.09 dB\\
+Minimum stopband attenuation(\textit{desired})&$\tilde{A_a}$&48 dB\\
 Lower passband edge&$\omega_{p1}$&400 rad/s\\
 Upper passband edge&$\omega_{p2}$&800 rad/s\\
 Lower stopband edge&$\omega_{a1}$&250 rad/s\\
@@ -67,13 +67,15 @@ Sampling frequency&$\omega_s$&2600 rad/s\\
 \caption{Prescribed Filter specifications}
 \end{table}
 
-Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple $A_p$ and the minimum stopband attenuation $A_a$.\\
+Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple(\textit{practical}) $A_p$ and the minimum stopband attenuation(\textit{practical}) $A_a$.\\
 
 \begin{equation}
 	\tilde{A_p} \ge A_p = 20\log(\frac{1+\delta}{1-\delta})
+	\label{A_p}
 \end{equation}
 \begin{equation}
  \tilde{A_a} \le A_a = -20\log(\delta)
+ \label{A_a}
 \end{equation}
 
 \begin{figure}[!h]
@@ -103,6 +105,7 @@ Sampling period& $T$& $2\pi / \omega_s$&$0.0024$ s\\
 \end{table}
 
 \subsubsection{Derivation of the Kaiser Window Parameters}
+
 Following equation represents the Kaiser window which will be used to truncate the Infinite duration Impulse Response to obtain the Finite duration Impulse Response for our filter design.
 
 \begin{equation}
@@ -118,6 +121,80 @@ where $\alpha$ is an independent parameter and $I_0(x)$ is the zeroth-order modi
 \[ 
 \beta = \alpha\sqrt{1-\left(\frac{2n}{N-1}\right)^2} \hspace*{1cm} I_0(x) = 1+\sum_{k=1}^{\infty}\left[\frac{1}{k!}\left(\frac{x}{2}\right)^k\right]^2
  \]
+
+Now we have to calculate the required parameters as follows,
+
+\begin{enumerate}[\hspace{1cm}a.)]
+\item Choose $\delta$ in Eqs. \ref{A_p} and \ref{A_a} such that $\delta = \min(\tilde{\delta_p}, \tilde{\delta_a})$ where,
+
+\[
+\begin{split}
+	\tilde{\delta_p} &= \frac{10^{0.05\tilde{A_p}}-1}{10^{0.05\tilde{A_p}}+1}\\
+	&=\frac{10^{0.05*0.09}-1}{10^{0.05*0.09}+1}\\
+	&=5.181\times10^{-3}
+\end{split}
+\hspace{2cm}
+\begin{split}
+	\tilde{\delta_a} &= 10^{-0.05\tilde{A_a}}\\
+&=3.981\times10^{-3}
+\end{split}
+\]
+\begin{center}
+	$\therefore~ \delta = 3.981\times10^{-3} $
+\end{center}
+
+\item With the required $\delta$ defined, the actual stopband loss(attenuation) $A_a$ in dB can be calculated using Eq. \ref{A_a}.
+\[
+\begin{split}
+	 \tilde{A_a} \le A_a &= -20\log(\delta)\\
+	 &=-20\log(3.981\times10^{-3})\\
+	A_a &= 48 ~dB
+\end{split}
+\]
+
+\item Choose parameter $\alpha$ as,
+    \[
+\alpha = \begin{cases}
+	0 & for~  A_a \leq 21 ~dB \\
+	0.5842(A_a - 21)^{0.4} + 0.07886(A_a - 21) & for ~ 21 < A_a \leq 50 ~dB \\
+	0.1102(A_a - 8.7) & for~  A_a > 50 ~dB
+\end{cases}
+\]
+
+\[
+\begin{split}
+\therefore~ \alpha &= 0.5842(A_a - 21)^{0.4} + 0.07886(A_a - 21)\\
+&=	0.5842(48 - 21)^{0.4} + 0.07886(48 - 21)\\
+&=4.3125
+\end{split}
+\]
+
+\item Choose parameter D as,
+
+\[
+D = \begin{cases}
+	0.9222 & for ~ A_a \leq 21 ~dB \\
+	\frac{A_a - 7.95}{14.36} & for ~ A_a > 21 ~dB
+\end{cases}
+\]\hspace{2cm}
+\[
+\begin{split}
+	\therefore~ D &= \frac{A_a - 7.95}{14.36}\\
+	&=\frac{48 - 7.95}{14.36}\\
+	&=  2.79
+\end{split}
+\]
+\item Then select the lowest odd value of N that would satisfy the inequality,
+\[
+\begin{split}
+	N  & \geq \frac{\omega_sD}{B_t}+1\\
+	&\geq \frac{2600*2.79}{100}+1\\
+	&\geq 73.51
+\end{split}
+\hspace{2cm}
+\therefore~	N = 75
+\]
+\end{enumerate}
 
 \section{Results}
 \section{Discussion}
