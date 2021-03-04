@@ -21,7 +21,8 @@
 
 \pagebreak
 \tableofcontents
-
+\listoffigures
+\listoftables
 \begin{center}
 	\textbf{\textit{* PDF is clickable}}
 \end{center}
@@ -48,11 +49,13 @@ Filter implementation consists of the steps mentioned below. Subsections of this
 \end{enumerate}
 \pagebreak
 \subsubsection{Prescribed Filter specifications}
-Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report.\\
+Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report.
 
 \begin{table}[!h]
 	\centering
+	\caption{Prescribed Filter specifications}
 	\begin{tabular}{l c r}
+		\hline
 		\textbf{Parameter}& \textbf{Symbol}&\textbf{Value}\\\hline
 		&&\\
 Maximum passband ripple(\textit{desired})&$\tilde{A_p}$&0.09 dB\\
@@ -64,7 +67,7 @@ Upper stopband edge&$\omega_{a2}$&900 rad/s\\
 Sampling frequency&$\omega_s$&2600 rad/s\\
 \hline\hline
 	\end{tabular}
-\caption{Prescribed Filter specifications}
+
 \end{table}
 
 Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple(\textit{practical}) $A_p$ and the minimum stopband attenuation(\textit{practical}) $A_a$.\\
@@ -90,7 +93,9 @@ According to the given specifications following parameters are calculated.
 
 \begin{table}[!h]
 	\centering
+	\caption{Derivation of filter Parameters}
 \begin{tabular}{l c c r}
+	\hline
 \textbf{Parameter}& \textbf{Symbol}& \textbf{Calculation}&\textbf{Value}\\\hline
 &&&\\
 Lower transition width& $B_{t1}$& $\omega_{p1} - \omega_{a1}$&150 rad/s\\
@@ -101,7 +106,7 @@ Upper cutoff frequency& $\omega_{c2}$&$\omega_{p2}+B_t/2 $&850 rad/s \\
 Sampling period& $T$& $2\pi / \omega_s$&$0.0024$ s\\
 \hline\hline
 \end{tabular}
-\caption{Derivation of filter Parameters}
+
 \end{table}
 
 \subsubsection{Derivation of the Kaiser Window Parameters}
@@ -112,6 +117,7 @@ Following equation represents the Kaiser window which will be used to truncate t
 w_K(nT) = \begin{cases}
 	\frac{I_0(\beta)}{I_0(\alpha)} & for \abs{n}  \leq \frac{N-1}{2} \\
 	0 & Otherwise
+	\label{kaiser}
 \end{cases}	
 \end{equation}
 
@@ -125,7 +131,7 @@ where $\alpha$ is an independent parameter and $I_0(x)$ is the zeroth-order modi
 Now we have to calculate the required parameters as follows,
 
 \begin{enumerate}[\hspace{1cm}a.)]
-\item Choose $\delta$ in Eqs. \ref{A_p} and \ref{A_a} such that $\delta = \min(\tilde{\delta_p}, \tilde{\delta_a})$ where,
+\item Choose $\delta$ in Eqs. \eqref{A_p} and \eqref{A_a} such that $\delta = \min(\tilde{\delta_p}, \tilde{\delta_a})$ where,
 
 \[
 \begin{split}
@@ -174,6 +180,7 @@ Now we have to calculate the required parameters as follows,
 \[
 D = \begin{cases}
 	0.9222 & for ~ A_a \leq 21 ~dB \\
+
 	\frac{A_a - 7.95}{14.36} & for ~ A_a > 21 ~dB
 \end{cases}
 \]\hspace{2cm}
@@ -184,6 +191,7 @@ D = \begin{cases}
 	&=  2.79
 \end{split}
 \]
+
 \item Then select the lowest odd value of N that would satisfy the inequality,
 \[
 \begin{split}
@@ -195,6 +203,48 @@ D = \begin{cases}
 \therefore~	N = 75
 \]
 \end{enumerate}
+\subsubsection{Derivation of The Ideal Impulse Response}
+
+\textbf{\textit{Note : Here subscript `d' implies ``desired'', as it is the ideal response of the filter. Subscript d will be omitted to indicate a given expression is no longer ideal.\\}}
+
+The frequency response of an ideal bandpass filter with cutoff frequencies $\omega_{c1}$ and $\omega_{c2}$ is given by,
+  
+\[
+H_d(e^{j\omega T}) = \begin{cases}
+1& for~ -\omega_{c2} \le \omega \le -\omega_{c1}\\
+1& for ~\omega_{c1} \le \omega \le \omega_{c2}\\
+0& Otherwise
+\end{cases}
+\]
+
+Using the Inverse Fourier Transform, impulse response of the above $H(e^{j\omega T})$ is calculated. 
+\[
+\begin{split}
+	h_d(nT) &=\frac{1}{\omega_s}\int_{-\omega_s/2}^{\omega_s/2} H(e^{j\omega T})e^{j\omega nT}~d\omega\\
+	&=\frac{1}{\omega_s}\left[\int_{-\omega_{c2}}^{-\omega_{c1}} e^{j\omega nT} ~d\omega+ \int_{\omega_{c1}}^{\omega_{c2}} e^{j\omega nT}~ d\omega\right]\\
+	&=\frac{1}{\omega_s} \left[ \left.\frac{e^{j\omega nT}}{jn T}\right|_{-\omega_{c2}}^{-\omega_{c1}} + \left.\frac{e^{j\omega nT}}{jn T}\right|_{\omega_{c1}}^{\omega_{c2}} \right]\\
+	&= \frac{1}{j\omega_s nT} \left[  e^{-j\omega_{c1}nT} - e^{-j\omega_{c2}nT}  +  e^{j\omega_{c2}nT} - e^{j\omega_{c1}nT}  \right] ; where~\omega_sT = 2\pi\\
+	&= \frac{1}{\pi n}\left[ \frac{(e^{j\omega_{c2}nT} - e^{-j\omega_{c2}nT})}{2j} - \frac{(e^{j\omega_{c1}nT} - e^{-j\omega_{c1}nT})}{2j}  \right] ; rearanging\\
+	&=	\frac{1}{\pi n}\left[   \sin(\omega_{c2}nT) - \sin(\omega_{c1}nT)  \right]; from~ Euler's ~Eq.  
+\end{split}
+\]
+
+\begin{equation}
+	\therefore ~ h_d(nT) = \begin{cases}
+		\frac{1}{\pi n}\left[   \sin(\omega_{c2}nT) - \sin(\omega_{c1}nT)  \right] & \forall n \ne 0\\
+		&\\
+		\frac{2}{\omega_s}\left( \omega_{c2} - \omega_{c1}\right)& for~ n = 0
+	\end{cases}
+\label{idealresponse}
+\end{equation}
+
+
+\subsubsection{Truncating the Ideal Impulse Response to obtain Finite Impulse Response: Windowing}
+
+By multiplying the ideal impulse response $h_d(nT)$ in Eq. \eqref{idealresponse} with the Kaiser window $w_K(nT)$ in Eq. \eqref{kaiser}, the ideal infinite impulse response can be truncated to obtain the finite impulse response $h(nT)$ for practical implementation.
+\begin{equation}
+h(nT) = 	w_K(nT).h_d(nT)
+\end{equation}
 
 \section{Results}
 \section{Discussion}
