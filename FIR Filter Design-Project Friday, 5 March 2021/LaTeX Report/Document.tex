@@ -19,31 +19,35 @@
 \input{content/title_page}
 
 \begin{abstract}
-	Design procedure of a Finite Duration Impulse Response(FIR) bandpass Digital Filter which satisfies a set of prescribed specifications, is described in this report where windowing method in conjunction with the Kaiser window is used for the designing procedure. Operation of the filter was analyzed with a combination of sine functions. The design was implemented and tested using {\tt MATLAB R2018a} of the MathWorks Inc. Therefore implementation is not guaranteed to work on the previous version of the software.
+	Design procedure of a Finite Duration Impulse Response(FIR) bandpass Digital Filter which satisfies a set of prescribed specifications, is described in this report where windowing method in conjunction with the Kaiser window is used for the designing procedure. Operation of the filter was analyzed with a combination of sinusoidal signals. The design was implemented and tested using {\tt MATLAB R2018a} of the MathWorks Inc.
 \end{abstract}
 
 \pagebreak
+
 \tableofcontents
 \listoffigures
 \listoftables
+
 \begin{center}
-	\textbf{\textit{* PDF is clickable}}
+	\textbf{\textit{*PDF is clickable}}
 \end{center}
 
-
-
-\textit{Note:}\\
-\textit{Additionally all the materials related to Task can also be found at \url{}}
+\textit{\textbf{Note:}}\\
+\textit{All the materials and executable {\tt MATLAB R2018a} Live Script related to the project can also be found at \url{https://github.com/bimalka98/Digital-Signal-Processing}}
 \pagebreak
 
 \section{Introduction}
 
-This report describes the design procedure of an FIR bandpass digital filter.
+This report describes the design procedure of an FIR bandpass digital filter which satisfies a predefined set of specifications as shown in the Table \ref{filterspecs}.\textbf{\textit{ Kaiser windowing}} method is used, due to its excellent capability to control filter's ripple ratio  and main-lobe width to facilitate a given set of specification by simply varying the related parameters. And most importantly a method is available to calculate those parameters through empirical formulae. Therefore this Kaiser Window is heavily used to design filters with prescribed specifications.\\
+
+{\tt MATLAB R2018a} of the MathWorks Inc. is used to implement and analyze the digital filter. Filtering was done in the frequency domain rather than in the time domain since the time domain convolution is computationally expensive. Frequency domain analysis was done using \textbf{\textit{Fast Fourier Transform}} algorithms(\textit{using built-in {\tt fft()} and {\tt ifft()} functions}). Performance of the filter was analyzed using a combination of sinusoidal signal, whose frequency components lie in the middle of the three main regions(\textit{lower stopband, passband and upper stopband}) of the bandpass filter. 
 
 \section{Method}
 
+First the digital filter is implemented through the procedure described in the \textbf{section 2.1}. Then its performance is analyzed as described in the \textbf{section 2.2}.
+
 \subsection{Filter Implementation}
-Filter implementation consists of the steps mentioned below. Subsections of this section of the report describes each one of them for designing an FIR bandpass filter using Kaiser Window method.
+Digital filter implementation consists of the steps that are mentioned below. Subsections of this section of the report describes each one of them thoroughly for designing the FIR bandpass filter using Kaiser Window method.
 
 \begin{enumerate}[\hspace{1cm}1.]
 	\item Identifying the prescribed filter specifications
@@ -54,7 +58,7 @@ Filter implementation consists of the steps mentioned below. Subsections of this
 \end{enumerate}
 
 \subsubsection{Prescribed Filter specifications}
-Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report.
+Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report rather than numerical values.
 
 \begin{table}[!h]
 	\centering
@@ -73,9 +77,10 @@ Sampling frequency&$\omega_s$&2600 rad/s\\
 \hline\hline
 	\end{tabular}
 	\caption{Prescribed Filter specifications}
+	\label{filterspecs}
 \end{table}
 
-Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple(\textit{practical}) $A_p$ and the minimum stopband attenuation(\textit{practical}) $A_a$.\\
+Following Fig.\ref{idealbpfilter} illustrates the aforementioned specifications graphically for an idealized frequency response of a Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple(\textit{practical}) $A_p$ and the minimum stopband attenuation(\textit{practical}) $A_a$.\\
 
 \begin{equation}
 	\tilde{A_p} \ge A_p = 20\log(\frac{1+\delta}{1-\delta})
@@ -90,15 +95,15 @@ Following figure illustrates the aforementioned specifications for an idealized 
 	\centering
 	\includegraphics[scale=0.4]{figures/filtersepecs}
 	\caption{Idealized frequency response of a Bandpass filter\cite{antonio}}
+	\label{idealbpfilter}
 \end{figure}
-\pagebreak
+
 \subsubsection{Derivation of filter Parameters}
 
-According to the given specifications following parameters are calculated.
+According to the given specifications following parameters are calculated; which then will be used to derive the parameters of the Kaiser window.  
 
 \begin{table}[!h]
-	\centering
-	
+	\centering	
 \begin{tabular}{l c c r}
 	\hline
 \textbf{Parameter}& \textbf{Symbol}& \textbf{Calculation}&\textbf{Value}\\\hline
@@ -116,7 +121,7 @@ Sampling period& $T$& $2\pi / \omega_s$&$0.0024$ s\\
 
 \subsubsection{Derivation of the Kaiser Window Parameters}
 
-Following equation represents the Kaiser window which will be used to truncate the Infinite duration Impulse Response to obtain the Finite duration Impulse Response for our filter design.
+Following equation represents the Kaiser window which will be used to truncate the Infinite duration Impulse Response to obtain the Finite duration Impulse Response for our filter design. Further explanations of the same steps can be found in the \textit{sections 9.4.5} and \textit{9.4.6} in the reference material\cite{antonio}.
 
 \begin{equation}
 w_K(nT) = \begin{cases}
@@ -130,7 +135,7 @@ w_K(nT) = \begin{cases}
 where $\alpha$ is an independent parameter and $I_0(x)$ is the zeroth-order modified Bessel function of the first kind.\\
 %372
 \[
-\beta = \alpha\sqrt{1-\left(\frac{2n}{N-1}\right)^2} \hspace*{1cm} I_0(x) = 1+\sum_{k=1}^{\infty}\left[\frac{1}{k!}\left(\frac{x}{2}\right)^k\right]^2
+\beta = \alpha\sqrt{1-\left(\frac{2n}{N-1}\right)^2} \hspace*{1cm} \hspace*{1cm} I_0(x) = 1+\sum_{k=1}^{\infty}\left[\frac{1}{k!}\left(\frac{x}{2}\right)^k\right]^2
  \]
 
 Now we have to calculate the required parameters as follows,
@@ -212,7 +217,7 @@ D = \begin{cases}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/kaisertime}
-	\caption{Derived Kaiser Window}
+	\caption{Derived Kaiser Window $w_K(nT)$ using calculated Parameters and Eq. \eqref{kaiser}}
 \end{figure}
 
 \subsubsection{Derivation of The Ideal Impulse Response}
@@ -224,7 +229,7 @@ The frequency response of an ideal bandpass filter with cutoff frequencies $\ome
 \[
 H_d(e^{j\omega T}) = \begin{cases}
 1& for~ -\omega_{c2} \le \omega \le -\omega_{c1}\\
-1& for ~\omega_{c1} \le \omega \le \omega_{c2}\\
+1& for ~~~~~\omega_{c1} \le \omega \le \omega_{c2}\\
 0& Otherwise
 \end{cases}
 \]
@@ -253,7 +258,7 @@ Using the Inverse Fourier Transform, impulse response of the above $H(e^{j\omega
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/ideal-impulse}
-	\caption{Anti-Causal Ideal Impulse Response}
+	\caption{Anti-Causal Ideal Impulse Response $h_d(nT)$}
 \end{figure}
 
 \subsubsection{Truncating the Ideal Impulse Response to obtain Finite Impulse Response: Windowing}
@@ -266,7 +271,8 @@ h(nT) = 	w_K(nT).h_d(nT)
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/fir-truncated}
-	\caption{Anti-Causal Finite Impulse Response}
+	\caption{Anti-Causal Finite Impulse Response $h(nT)$}
+	\label{firimp}
 \end{figure}
 
 Obtaining the transfer function in the $\mathcal{Z}$ domain using $\mathcal{Z}$ Transformation,
@@ -277,14 +283,14 @@ Obtaining the transfer function in the $\mathcal{Z}$ domain using $\mathcal{Z}$ 
 	\end{split}
 \end{equation}
 
-The response is anti-causal it need to be shifted in the time domain to make it causal and get the final filter response$H(Z)$, in $\mathcal{Z}$ domain it is represented as follows.
+The response is anti-causal it need to be shifted in the time domain to make it causal and get the final filter response$H(Z)$, in $\mathcal{Z}$ domain it is represented as follows. Then the equation is evaluated at $e^{j\omega}$ to get the frequency response of the filter
 \begin{equation}
 	H(z)= z^{-\left(\frac{N-1}{2}\right)}.H'(z)
 \end{equation}
 
 \subsection{Filter Performance Evaluation}
 
-Performance of the filter was evaluated by using the following excitation $x(nT)$ which is a combination of three sinusoidal signals. Frequencies of these three sinusoidal signals are specified as follows to cover all three bands in the filter.
+Performance of the filter was evaluated by using the following excitation $x(nT)$ which is a combination of three sinusoidal signals. Frequencies of these three sinusoidal signals are specified as follows to cover all three bands(\textit{lower stopband, passband and upper stopband}) in the bandpass filter.
 
 \[x(nT) = \sum_{i=1}^{3}sin(w_inT)\]
 
@@ -302,6 +308,8 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 	\end{tabular}
 \caption{Frequencies for Filter Performance Evaluation}
 \end{table}
+
+the required output can be obtained by time domain convolution of the input signal $x(nT)$ with the impulse response in Fig 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/in-signal}
@@ -332,7 +340,7 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 \end{figure}
 
 \pagebreak
-\subsection{Input Output Characteristics}
+\subsection{Input Output Signal Characteristics}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/input-signal}
