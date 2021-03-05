@@ -2,19 +2,19 @@
 %  Author         : Bimalka Piyaruwan Thalagala
 %  GitHub         : https://github.com/bimalka98
 %  Date Created   : 01.09.2020
-%  Last Modified  : 15.02.2020
+%  Last Modified  : 06.03.2020
 %  -----------------------------------------------------------------------------
 
 \documentclass[a4paper,11pt]{article}%,twocolumn
 \input{settings/packages}
 \input{settings/page}
 \input{settings/macros}
-
 \usepackage[ framed, numbered]{matlab-prettifier}%framed,%
 \usepackage{listings}
-
 \usepackage{physics}
 \usepackage{pdfpages}
+\usepackage[toc,page]{appendix}
+
 \begin{document}
 \input{content/title_page}
 
@@ -372,7 +372,7 @@ By inspecting the frequency spectrum of the output signal we can observe that ou
 
 Depending on the results it can be concluded that the Kaiser Window method has yielded a near ideal passband filter characteristics which satisfies all the prescribed specifications. Even though there are some ripples in the passband and the stopband, the filter characteristics can be optimized without much effort through tuning the parameters ($\alpha$ and $N$) to obtain perfect and at the same time practical filter for a given application. In addition to that computational complexity of the parameters which are used to obtain the Kaiser Window is also much less and most importantly there is a clear method to obtain those parameters through empirical formulae.\\
 
-But when a filter is practically implemented in hardware, usage of the computational resources plays a vital role and as the order of the filter grows resource requirement grows drastically. Therefore,  as a major disadvantage of the Kaiser Window method, the high order of the filters can be pointed out. Filter of order 75 was required to achieve the given specs in this case while there are other filter designing methods which yield the same characteristics with much lower order and therefore much lower resource requirements.
+But when a filter is practically implemented in hardware, usage of the computational resources plays a vital role and as the order of the filter grows resource requirement grows drastically. Therefore,  as a major disadvantage of the Kaiser Window method, the high order of the filters can be pointed out. Filter of order 75 was required to achieve the given specs in our case while there are other filter designing methods which yield the same characteristics with much lower order and therefore much lower resource requirements.
 
 \vfill
 \hrule
@@ -380,9 +380,17 @@ But when a filter is practically implemented in hardware, usage of the computati
 \bibliographystyle{plain}
 \bibliography{refer}
 
-\pagebreak
 
-%\includepdf[pages=-]{code/bandpass180631J.pdf}
+\vspace{1cm}
+\hrule
+\vspace{0.5cm}
+\begin{appendices}
+	\section{Matlab Code for the Implementation}
+	\includepdf[pages=-]{code/bandpass180631J.pdf}
+\end{appendices}
+
+
+
 %---------------------------------------------------------------------------
 \end{document}
 -
