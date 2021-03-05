@@ -9,8 +9,10 @@
 \input{settings/packages}
 \input{settings/page}
 \input{settings/macros}
+
 \usepackage[ framed, numbered]{matlab-prettifier}%framed,%
 \usepackage{listings}
+
 \usepackage{physics}
 \usepackage{pdfpages}
 \begin{document}
@@ -41,16 +43,16 @@ This report describes the design procedure of an FIR bandpass digital filter.
 \section{Method}
 
 \subsection{Filter Implementation}
-Filter implementation consists of the steps mentioned below. Subsections of this section of the report describes each one of them for designing an FIR bandpass filter.
+Filter implementation consists of the steps mentioned below. Subsections of this section of the report describes each one of them for designing an FIR bandpass filter using Kaiser Window method.
 
 \begin{enumerate}[\hspace{1cm}1.]
 	\item Identifying the prescribed filter specifications
 	\item Derivation of the filter Parameters
 	\item Derivation of the Kaiser Window Parameters
 	\item Derivation of The Ideal Impulse Response
-	\item Truncating the Ideal Impulse Response to obtain Finite Impulse Response: Windowing
+	\item Truncating the Ideal Impulse Response to obtain Finite Impulse Response i.e Windowing
 \end{enumerate}
-\pagebreak
+
 \subsubsection{Prescribed Filter specifications}
 Following table describes the desired specifications of the bandpass filter which need to be implemented. The notation used here is the same as the notation used in the reference material\cite{antonio} and they will be used throughout the report.
 
@@ -206,6 +208,13 @@ D = \begin{cases}
 \therefore~	N = 75
 \]
 \end{enumerate}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/kaisertime}
+	\caption{Derived Kaiser Window}
+\end{figure}
+
 \subsubsection{Derivation of The Ideal Impulse Response}
 
 \textbf{\textit{Note : Here subscript `d' implies ``desired'', as it is the ideal response of the filter. Subscript d will be omitted to indicate a given expression is no longer ideal.\\}}
@@ -241,6 +250,11 @@ Using the Inverse Fourier Transform, impulse response of the above $H(e^{j\omega
 \label{idealresponse}
 \end{equation}
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/ideal-impulse}
+	\caption{Anti-Causal Ideal Impulse Response}
+\end{figure}
 
 \subsubsection{Truncating the Ideal Impulse Response to obtain Finite Impulse Response: Windowing}
 
@@ -248,6 +262,12 @@ By multiplying the ideal impulse response $h_d(nT)$ in Eq. \eqref{idealresponse}
 \begin{equation}
 h(nT) = 	w_K(nT).h_d(nT)
 \end{equation}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/fir-truncated}
+	\caption{Anti-Causal Finite Impulse Response}
+\end{figure}
 
 Obtaining the transfer function in the $\mathcal{Z}$ domain using $\mathcal{Z}$ Transformation,
 \begin{equation}
@@ -282,11 +302,16 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 	\end{tabular}
 \caption{Frequencies for Filter Performance Evaluation}
 \end{table}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/in-signal}
+	\caption{Input Signal}
+\end{figure}
 
 \pagebreak
 \section{Results}
 
-\subsection{FIR Filter representations}
+\subsection{FIR Filter Characteristics}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/causal-impulse-response}
@@ -306,14 +331,20 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 	\caption{Magnitude Response of the Filter for the frequencies in the Passband}
 \end{figure}
 
-\subsection{Input Output Relationship}
+\pagebreak
+\subsection{Input Output Characteristics}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/input-signal}
 	\caption{Input signal representation in Time and Frequency Domains}
 \end{figure}
 
-
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/output-signal}
+	\caption{Output signal representation in Time and Frequency Domains}
+\end{figure}
+\pagebreak
 \section{Discussion}
 \section{Conclusion}
 %\lstinputlisting[basicstyle = \mlttfamily\scriptsize , style = Matlab-editor]{code/RFPL.m}
