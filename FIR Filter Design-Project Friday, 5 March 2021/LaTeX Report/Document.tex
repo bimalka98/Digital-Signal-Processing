@@ -27,7 +27,7 @@
 \tableofcontents
 \listoffigures
 \listoftables
-
+\vfill
 \begin{center}
 	\textbf{\textit{*PDF is clickable}}
 \end{center}
@@ -261,7 +261,7 @@ Using the Inverse Fourier Transform, impulse response of the above $H(e^{j\omega
 	\caption{Anti-Causal Ideal Impulse Response $h_d(nT)$}
 \end{figure}
 
-\subsubsection{Truncating the Ideal Impulse Response to obtain Finite Impulse Response: Windowing}
+\subsubsection{Truncating the Ideal Impulse Response to obtain a Finite Impulse Response}
 
 By multiplying the ideal impulse response $h_d(nT)$ in Eq. \eqref{idealresponse} with the Kaiser window $w_K(nT)$ in Eq. \eqref{kaiser}, the ideal infinite impulse response can be truncated to obtain the finite impulse response $h(nT)$ for practical implementation.
 \begin{equation}
@@ -309,29 +309,38 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 \caption{Frequencies for Filter Performance Evaluation}
 \end{table}
 
-the required output can be obtained by time domain convolution of the input signal $x(nT)$ with the impulse response in Fig 
+The required filtered output can be obtained by time domain convolution of the input signal $x(nT)$ with the impulse response $h(nT)$ in Fig. \ref{firimp}. But as mentioned previously the convolution is computationally expensive operation. Therefore filtering is done in the frequency domain which then simplifies into a simple multiplication. For that Discrete Fourier Transform(DFT) of the input signal $x(nT)$ and DFT of $h(nT)$ are obtained through the {\tt fft()} function in MATLAB. Then they are multiplied to get the frequency domain output and {\tt ifft()} is applied on that to get the time domain output signal.
+ 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/in-signal}
-	\caption{Input Signal}
+	\caption{Input Signal and the Desired Output Signal}
 \end{figure}
 
 \pagebreak
 \section{Results}
 
 \subsection{FIR Filter Characteristics}
+
+Filter Characteristics showed in this section was obtained through the procedure explained in the \textit{section 2.1 Filter Implementation}.\\
+
+Anti-Causal Impulse Response of the Filter can be right shifted in time domain to obtain the Causal Impulse Response as shown below. Note that there, the samples(n) axis starts from 0 and continues up to 74. That is N-1. Whereas previously it was from -37 to 37.
+
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/causal-impulse-response}
 	\caption{Causal Impulse Response of the Filter}
 \end{figure}
-
-
+\vfill
+Magnitude Response of the Filter was obtained through the MATLAB's {\tt freqz()} function which computes the frequency, magnitude, and phase response of given digital filter(\textit{impulse response}).
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.4]{figures/magnitude-response}
 	\caption{Magnitude Response of the Filter}
 \end{figure}
+
+\pagebreak
+Magnitude Response of the Filter for the frequencies in the Passband can be simply obtained through limiting the range of Angular Frequency axis using MATLAB's {\tt xlim([$\omega_{p1}$ $\omega_{p2}$])} function. It allows us to identify the nature of the passband  ripples of a kaiser window of order 75. According to the prescribed specifications Maximum passband ripple(\textit{desired})  $\tilde{A_p}$ was 0.09 dB. And we can observe that the designed filter has achieved that goal.
 
 \begin{figure}[!h]
 	\centering
@@ -341,26 +350,38 @@ the required output can be obtained by time domain convolution of the input sign
 
 \pagebreak
 \subsection{Input Output Signal Characteristics}
-\begin{figure}[!h]
-	\centering
-	\includegraphics[scale=0.4]{figures/input-signal}
-	\caption{Input signal representation in Time and Frequency Domains}
-\end{figure}
+
+As explained in the \textbf{Filter Performance Evaluation} section input signal is a combination of three sinusoidal signals which has its frequency components lie in the three bands of the bandpass filter. This fact is clearly visible in the frequency spectrum of the Input Signal.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.4]{figures/output-signal}
+	\includegraphics[scale=0.45]{figures/input-signal}
+	\caption{Input signal representation in Time and Frequency Domains}
+\end{figure}
+\vfill
+By inspecting the frequency spectrum of the output signal we can observe that output signal is a filtered version of the input signal and that the correct frequencies have been passed through the filter perfectly. Because both the frequencies that were in the lower and upper stop bands are filtered out and disappeared completely from the frequency spectrum of the output signal. This guarantees that the Kaiser window method has  yield an almost ideal bandpass filter which satisfies the prescribed specifications.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.45]{figures/output-signal}
 	\caption{Output signal representation in Time and Frequency Domains}
 \end{figure}
 \pagebreak
-\section{Discussion}
-\section{Conclusion}
-%\lstinputlisting[basicstyle = \mlttfamily\scriptsize , style = Matlab-editor]{code/RFPL.m}
 
+\section{Conclusions}
 
-\pagebreak
+Depending on the results it can be concluded that the Kaiser Window method has yielded a near ideal passband filter characteristics which satisfies all the prescribed specifications. Even though there are some ripples in the passband and the stopband, the filter characteristics can be optimized without much effort through tuning the parameters ($\alpha$ and $N$) to obtain perfect and at the same time practical filter for a given application. In addition to that computational complexity of the parameters which are used to obtain the Kaiser Window is also much less and most importantly there is a clear method to obtain those parameters through empirical formulae.\\
+
+But when a filter is practically implemented in hardware, usage of the computational resources plays a vital role and as the order of the filter grows resource requirement grows drastically. Therefore,  as a major disadvantage of the Kaiser Window method, the high order of the filters can be pointed out. Filter of order 75 was required to achieve the given specs in this case while there are other filter designing methods which yield the same characteristics with much lower order and therefore much lower resource requirements.
+
+\vfill
+\hrule
+\vspace{0.5cm}
 \bibliographystyle{plain}
 \bibliography{refer}
+
+\pagebreak
+
 %\includepdf[pages=-]{code/bandpass180631J.pdf}
 %---------------------------------------------------------------------------
 \end{document}
