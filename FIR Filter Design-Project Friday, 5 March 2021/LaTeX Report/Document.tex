@@ -56,7 +56,7 @@ Following table describes the desired specifications of the bandpass filter whic
 
 \begin{table}[!h]
 	\centering
-	\caption{Prescribed Filter specifications}
+
 	\begin{tabular}{l c r}
 		\hline
 		\textbf{Parameter}& \textbf{Symbol}&\textbf{Value}\\\hline
@@ -70,7 +70,7 @@ Upper stopband edge&$\omega_{a2}$&900 rad/s\\
 Sampling frequency&$\omega_s$&2600 rad/s\\
 \hline\hline
 	\end{tabular}
-
+	\caption{Prescribed Filter specifications}
 \end{table}
 
 Following figure illustrates the aforementioned specifications for an idealized frequency responses of Bandpass filter. $\delta$ in the figure has the following relationship with peak to peak passband ripple(\textit{practical}) $A_p$ and the minimum stopband attenuation(\textit{practical}) $A_a$.\\
@@ -96,7 +96,7 @@ According to the given specifications following parameters are calculated.
 
 \begin{table}[!h]
 	\centering
-	\caption{Derivation of filter Parameters}
+	
 \begin{tabular}{l c c r}
 	\hline
 \textbf{Parameter}& \textbf{Symbol}& \textbf{Calculation}&\textbf{Value}\\\hline
@@ -109,7 +109,7 @@ Upper cutoff frequency& $\omega_{c2}$&$\omega_{p2}+B_t/2 $&850 rad/s \\
 Sampling period& $T$& $2\pi / \omega_s$&$0.0024$ s\\
 \hline\hline
 \end{tabular}
-
+\caption{Derivation of filter Parameters}
 \end{table}
 
 \subsubsection{Derivation of the Kaiser Window Parameters}
@@ -270,18 +270,36 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 
 \begin{table}[!h]
 	\centering
+	
 	\begin{tabular}{l c c r}
 		\hline
 	\textbf{Parameter}& \textbf{Symbol}& \textbf{Calculation}&\textbf{Value}\\\hline
 	&&&\\
 	Middle frequency of the lower stopband& $\omega_1$&$\frac{0+ \omega_{a1}}{2}$&125 rad/s\\
 	Middle frequency of the passband &$\omega_2$&$\frac{\omega_{p1}+\omega_{p2}}{2}$&600 rad/s\\
-	Middle frequency of the upper stopband& $\omega_3$&$\frac{\omega_{a2}+\omega_s/2}{2}$&11 rad/s\\
+	Middle frequency of the upper stopband& $\omega_3$&$\frac{\omega_{a2}+\omega_s/2}{2}$&1100 rad/s\\
+	\hline\hline
 	\end{tabular}
+\caption{Frequencies for Filter Performance Evaluation}
 \end{table}
 
-
+\pagebreak
 \section{Results}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/causal-impulse-response}
+	\caption{Causal Impulse Response of the Filter}
+\end{figure}
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.4]{figures/magnitude-response}
+	\caption{Causal Impulse Response of the Filter}
+\end{figure}
+
+
 \section{Discussion}
 \section{Conclusion}
 %\lstinputlisting[basicstyle = \mlttfamily\scriptsize , style = Matlab-editor]{code/RFPL.m}
@@ -290,7 +308,7 @@ Performance of the filter was evaluated by using the following excitation $x(nT)
 \pagebreak
 \bibliographystyle{plain}
 \bibliography{refer}
-\includepdf[]{code/bandpass180631J.pdf}
+\includepdf[pages=-]{code/bandpass180631J.pdf}
 %---------------------------------------------------------------------------
 \end{document}
 -
