@@ -7,7 +7,7 @@
 
 1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
 2. [Applications and Basics](#applications-and-basics)
-3. [Projects/ Assignments]()
+3. [Projects/ Assignments](#projects-assignments)
 4. [References](#references)
 
 
