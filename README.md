@@ -7,7 +7,8 @@
 
 1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
 2. [Applications and Basics](#applications-and-basics)
-3. [References](#references)
+3. [Projects/ Assignments]()
+4. [References](#references)
 
 
 ---
@@ -50,10 +51,17 @@ $ source /c/Python38/ai/Scripts/activate
 $ jupyter lab
 ```
 
+---
+
 # *Applications and Basics*
 
 * [Basic functions](http://htmlpreview.github.io/?https://github.com/bimalka98/Digital-Signal-Processing/blob/main/PractiseDSP/Basicfunctions.html)
 
+---
+
+# *Projects/ Assignments*
+
+1.Design of a Finite Duration Impulse Response Bandpass Digital Filter [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/180631J-Project-EN2570.pdf), [Code .mlx file](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/code/bandpass180631J.mlx)
 
 # *References*
 1. Discrete-Time Signal Processing by *Alan V. Oppenheim, Ronald W. Schafer*
