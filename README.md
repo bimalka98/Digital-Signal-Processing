@@ -52,7 +52,7 @@ $ source /c/Python38/ai/Scripts/activate
 $ jupyter lab
 ```
 
-Check Tensorflow GPU
+Check Tensorflow GPU [Reference1](https://www.tensorflow.org/install/gpu), [Reference2](https://www.codingforentrepreneurs.com/blog/install-tensorflow-gpu-windows-cuda-cudnn/)
 
 ```python
 from tensorflow.python.client import device_lib
