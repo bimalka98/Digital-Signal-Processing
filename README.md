@@ -1,9 +1,8 @@
 <h2 align="center"> Contents❄ </h2>
 
 1. [Creating a virtual environment with Deep Learning Capabilities for Digital Signal Processing](#creating-a-virtual-environment-with-deep-learning-capabilities-for-digital-signal-processing)
-2. [Applications and Basics](#applications-and-basics)
-3. [Projects/ Assignments](#projects-assignments)
-4. [References](#references)
+2. [Projects/ Assignments](#projects-assignments)
+3. [References](#references)
 
 
 ---
@@ -93,15 +92,9 @@ physical_device_desc: "device: 0, name: GeForce GTX 1050, pci bus id: 0000:01:00
 
 ---
 
-# *Applications and Basics*
-
-* [Basic functions](http://htmlpreview.github.io/?https://github.com/bimalka98/Digital-Signal-Processing/blob/main/PractiseDSP/Basicfunctions.html)
-
----
-
 # *Projects/ Assignments*
 
-1.Design of a Finite Duration Impulse Response Bandpass Digital Filter [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/180631J-Project-EN2570.pdf), [Code .mlx file](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/code/bandpass180631J.mlx)
+1. Design of a Finite Duration Impulse Response Bandpass Digital Filter [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/180631J-Project-EN2570.pdf), [Code .mlx file](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/code/bandpass180631J.mlx)
 2. Digital Signal Sampling [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/LaTeX%20Report/180631J_A01_EN2073.pdf), [Code](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/code.mlx)  
 
 
