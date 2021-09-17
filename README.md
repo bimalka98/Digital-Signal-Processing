@@ -94,8 +94,9 @@ physical_device_desc: "device: 0, name: GeForce GTX 1050, pci bus id: 0000:01:00
 
 # *Projects/ Assignments*
 
-1. Design of a Finite Duration Impulse Response Bandpass Digital Filter [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/180631J-Project-EN2570.pdf), [Code .mlx file](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/code/bandpass180631J.mlx)
-2. Digital Signal Sampling [PDF](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/LaTeX%20Report/180631J_A01_EN2073.pdf), [Code](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/code.mlx)  
+1. Design of a Finite Duration Impulse Response Bandpass Digital Filter [[pdf]](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/180631J-Project-EN2570.pdf), [[code]](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/FIR%20Filter%20Design-Project%20Friday%2C%205%20March%202021/LaTeX%20Report/code/bandpass180631J.mlx)
+2. Digital Signal Sampling [[pdf]](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/LaTeX%20Report/180631J_A01_EN2073.pdf), [[code]](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/Digital%20Signal%20Sampling%20May%203%2C%202021/code.mlx)
+3. EN 2040 Random Signals and Processes Simulation Assignment [[pdf]](https://nbviewer.jupyter.org/github/bimalka98/Digital-Signal-Processing/blob/main/RSP%20Simulation%20Assignment/EN2040_SA_180631J.pdf) [[code]](https://github.com/bimalka98/Digital-Signal-Processing/blob/main/RSP%20Simulation%20Assignment/code/EN2040_SA_180631J.mlx)  
 
 
 # *References*
